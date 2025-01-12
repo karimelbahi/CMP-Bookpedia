@@ -50,6 +50,8 @@ import com.plcoding.bookpedia.core.presentation.DarkBlue
 import com.plcoding.bookpedia.core.presentation.DesertWhite
 import com.plcoding.bookpedia.core.presentation.PulseAnimation
 import com.plcoding.bookpedia.core.presentation.SandYellow
+import com.plcoding.bookpedia.utils.PlatformType
+import com.plcoding.bookpedia.utils.getPlatformType
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -151,6 +153,10 @@ fun BlurredImageBackground(
                             )
                         }
                         else -> {
+                            val gradientRadius = when(getPlatformType()) {
+                                PlatformType.DESKTOP -> 28f
+                                else -> 70f
+                            }
                             Box {
                                 Image(
                                     painter = if(result.isSuccess) painter else {
@@ -175,7 +181,7 @@ fun BlurredImageBackground(
                                                 colors = listOf(
                                                     SandYellow, Color.Transparent
                                                 ),
-                                                radius = 70f
+                                                radius = gradientRadius
                                             )
                                         )
                                 ) {
