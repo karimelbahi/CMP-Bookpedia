@@ -129,6 +129,10 @@ fun BlurredImageBackground(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.fillMaxWidth()
         ) {
+            val gradientRadius = when(getPlatformType()) {
+                PlatformType.DESKTOP -> 28f
+                else -> 70f
+            }
             Spacer(modifier = Modifier.fillMaxHeight(0.15f))
             ElevatedCard(
                 modifier = Modifier
@@ -153,10 +157,6 @@ fun BlurredImageBackground(
                             )
                         }
                         else -> {
-                            val gradientRadius = when(getPlatformType()) {
-                                PlatformType.DESKTOP -> 28f
-                                else -> 70f
-                            }
                             Box {
                                 Image(
                                     painter = if(result.isSuccess) painter else {
